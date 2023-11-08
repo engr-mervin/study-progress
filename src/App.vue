@@ -1,5 +1,5 @@
 <template>
-  <h1>Study Progress</h1>
+  <h1>Study Progress Tracker</h1>
   <add-topic-form @add-topic="addTopic"></add-topic-form>
   <ul>
     <topic

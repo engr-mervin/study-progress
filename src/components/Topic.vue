@@ -39,7 +39,7 @@ export default defineComponent({
     emits: {
         'edit-topic-event': function (id: Date,updatedTopic:Record<any,any>) {
             id ?? console.warn('Missing ID');
-            updatedTopic??console.warn("Missing updated topic object")
+            updatedTopic ?? console.warn("Missing updated topic object");
             return !!id&&!!updatedTopic;
         }
     },
