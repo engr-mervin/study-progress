@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="add">
+  <form @submit.prevent="submit">
     <div>
       <label for="inp-desc">Description:</label>
       <input id="inp-desc" v-model="description" type="text" />
@@ -16,12 +16,35 @@
         <option>High</option>
       </select>
     </div>
-    <button>Add</button>
+    <button>{{formType}}</button>
   </form>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
 export default defineComponent({
+  props:{
+    formType:{
+      type: String,
+      required:false,
+      default: 'Add'
+    },
+    propDesc:{
+      type:String,
+      required:false,
+      default:'',
+    },
+    propTotalHours:{
+      type:Number,
+      required:false,
+      default:0,
+    },
+    propPriority:{
+      type:String,
+      required:false,
+      default:''
+    }
+
+  },
   emits: {
     "add-topic": function (newTopic: any) {
       return typeof newTopic === "object";
@@ -29,18 +52,19 @@ export default defineComponent({
   },
   data: function () {
     return {
-      description: "",
-      totalHours: 0,
-      priority: "",
+      description:this.propDesc,
+      totalHours: this.propTotalHours,
+      priority: this.propPriority,
     };
   },
   methods: {
-    add: function () {
+    submit: function () {
       this.$emit("add-topic", {
         description: this.description,
         totalHours: this.totalHours,
         priority: this.priority,
       });
+
     },
   },
 });
